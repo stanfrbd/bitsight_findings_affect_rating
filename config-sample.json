@@ -1,0 +1,16 @@
+{
+    "companies": [{
+            "guid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "name": "My company1"
+        },
+        {
+            "guid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "name": "My company2"
+        },
+        {
+            "guid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "name": "My company3"
+        }
+    ],
+    "api_token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+}
