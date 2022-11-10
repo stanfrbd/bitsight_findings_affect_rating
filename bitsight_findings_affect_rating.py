@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+
+# Stanislas MEDRANO - CSIRT - 10/11/2022
+
 import requests
 import time
 import json
@@ -20,7 +24,7 @@ url_options = "/findings?limit=1000000000&affects_rating=true"
 csv = "company" + SEP + "risk_vector" + SEP + "finding" + SEP + "finding_grade" + SEP + "affects_grade" + SEP + "first_seen" + SEP + "last_seen" + "\n"
 
 def export_to_csv():
-    print("\nGenerated CSV: ./security-headers-" + today + "-export.csv\n")
+    print("\nGenerated CSV: ./bitsight_findings_affect_rating-" + today + "-export.csv\n")
     f = open("bitsight_findings_affect_rating-" + today + "-export.csv", "a")
     f.write(csv)
     f.close()
@@ -32,8 +36,6 @@ def load_config():
         config = json.load(f)
         api_key = config["api_token"]
         companies = config["companies"]
-
-
 
 def get_bitsight_results():
 
@@ -47,10 +49,8 @@ def get_bitsight_results():
                 if response.status_code == 200:
 
                         json = response.json()
-                        f = open(company['name'] + ".json", "wb")
-                        f.write(response.text.encode("utf-8"))
-                        f.close()
                         
+                        # let the time to process
                         time.sleep(2)
 
                         print("\nCompany name: ", company['name'])
@@ -63,13 +63,15 @@ def get_bitsight_results():
                                         affects_rating = result['affects_rating']
                                         first_seen = result['first_seen']
                                         last_seen = result['last_seen']
-
+                                        
+                                        # Output
+                                        print(company['name'] + SEP + risk_vector + SEP + finding + SEP + finding_grade + SEP + str(affects_rating) + SEP + first_seen + SEP + last_seen)
+                                        
+                                        # Appending CSV variable
                                         csv += company['name'] + SEP + risk_vector + SEP + finding + SEP + finding_grade + SEP + str(affects_rating) + SEP + first_seen + SEP + last_seen + "\n"
-                                        print(csv)
 
                                 except KeyError:
                                         pass
-                        
                 else:
                         raise Exception("HTTP error: " + str(response.status_code))
                 
@@ -85,5 +87,5 @@ if __name__ == "__main__":
     try: 
         main() 
     except Exception as err: 
-        print("General error : ", err) 
+        print("General error: " + str(err) + " check your config file and API Token") 
         exit(1)
