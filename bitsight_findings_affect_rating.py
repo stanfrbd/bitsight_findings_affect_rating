@@ -7,8 +7,9 @@ import time
 import json
 from datetime import datetime
 
-SEP = ";"
+SEP = ","
 csv = ""
+proxy = ""
 
 # Current date
 now = datetime.now()
@@ -32,19 +33,23 @@ def export_to_csv():
 def load_config():
         global api_key
         global companies
+        global proxy
         f = open("config.json", "r")
         config = json.load(f)
         api_key = config["api_token"]
         companies = config["companies"]
+        proxy = config["proxy_url"]
 
 def get_bitsight_results():
+
+        proxy_servers = { 'http': proxy, 'https': proxy }
 
         global csv
 
         for company in companies:
 
                 url =  base_url + company['guid'] + url_options
-                response = requests.get(url, auth=(api_key, ""))
+                response = requests.get(url, auth=(api_key, ""), proxies=proxy_servers)
                 # print(response.status_code)
                 if response.status_code == 200:
 

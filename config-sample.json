@@ -12,5 +12,6 @@
             "name": "My company3"
         }
     ],
-    "api_token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    "api_token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "proxy_url": ""
 }
