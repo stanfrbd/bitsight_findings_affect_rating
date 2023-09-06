@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-# Stanislas MEDRANO - CSIRT - 10/11/2022
-
 import requests
 import time
 import json
