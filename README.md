@@ -4,6 +4,8 @@ For a better understanding, refer to the official Bitsight API documentation: ht
 
 # Dependencies
 
+You might want to create a [`venv`](https://docs.python.org/3/library/venv.html) before installing the dependencies.
+
 - `python3`
 - `requests`
 
